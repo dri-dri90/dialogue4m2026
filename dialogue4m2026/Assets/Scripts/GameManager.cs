@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,13 +31,25 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // Só muda para a Splash se estivermos no Boot
-        if (SceneManager.GetActiveScene().name == "_Boot")
-        {
-            MudarCena("Splash", GameState.Iniciando);
+    
+    }
+    private void Update() {
+        switch(CurrentState) {
+            case GameState.Iniciando:
+                if(SceneManager.GetActiveScene().name != "Splash") {
+                    MudarCena("Splash", GameState.Iniciando);
+                    StartCoroutine(ContagemSplash()); 
+                
+                }
+            break;
+            
+            case GameState.MenuPrincipal:
+
+            break;
+
+            default: break;
         }
     }
-
     public void MudarCena(string nomeDaCena, GameState novoEstado)
     {
         AlterarEstado(novoEstado);
@@ -53,5 +66,12 @@ public class GameManager : MonoBehaviour
     public void SairDoJogo()
     {
         Application.Quit();
+    }
+
+    IEnumerator ContagemSplash()
+    {
+        Debug.Log("Splash iniciada...");
+        yield return new WaitForSeconds(2f); // Aguarda os 2 segundos exigidos
+        MudarCena("MenuPrincipal", GameState.MenuPrincipal);
     }
 }
