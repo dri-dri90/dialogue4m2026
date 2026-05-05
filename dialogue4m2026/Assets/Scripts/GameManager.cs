@@ -38,8 +38,6 @@ public class GameManager : MonoBehaviour
             case GameState.Iniciando:
                 if(SceneManager.GetActiveScene().name != "Splash") {
                     MudarCena("Splash", GameState.Iniciando);
-                    StartCoroutine(ContagemSplash()); 
-                
                 }
             break;
             
@@ -50,13 +48,15 @@ public class GameManager : MonoBehaviour
             default: break;
         }
     }
-    public void MudarCena(string nomeDaCena, GameState novoEstado)
+    public void MudarCena(string nomeDaCena)
     {
-        AlterarEstado(novoEstado);
         SceneManager.LoadScene(nomeDaCena);
         Debug.Log($"Indo para: {nomeDaCena} | Estado: {CurrentState}");
     }
 
+    // public void checarCena(string ) {
+
+    // }
     private void AlterarEstado(GameState novoEstado)
     {
         CurrentState = novoEstado;
@@ -66,12 +66,5 @@ public class GameManager : MonoBehaviour
     public void SairDoJogo()
     {
         Application.Quit();
-    }
-
-    IEnumerator ContagemSplash()
-    {
-        Debug.Log("Splash iniciada...");
-        yield return new WaitForSeconds(2f); // Aguarda os 2 segundos exigidos
-        MudarCena("MenuPrincipal", GameState.MenuPrincipal);
     }
 }

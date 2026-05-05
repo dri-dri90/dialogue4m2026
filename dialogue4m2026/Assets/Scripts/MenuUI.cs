@@ -8,7 +8,7 @@ public class MenuUI : MonoBehaviour
         if (GameManager.Instance != null)
         {
             // Chama a função do GameManager que muda a cena e o Estado
-            GameManager.Instance.MudarCena("SampleScene", GameManager.GameState.Gameplay);
+            GameManager.Instance.MudarCena("SampleScene");
         }
         else
         {
