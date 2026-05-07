@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         switch(CurrentState) {
             case GameState.Iniciando:
                 if(SceneManager.GetActiveScene().name != "Splash") {
-                    MudarCena("Splash", GameState.Iniciando);
+                    MudarCena("Splash");
                 }
             break;
             
@@ -52,11 +52,34 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(nomeDaCena);
         Debug.Log($"Indo para: {nomeDaCena} | Estado: {CurrentState}");
+
+        if(nomeDaCena == "Splash") {
+            CurrentState = GameState.Iniciando;
+        }
+        
+        if(nomeDaCena == "MenuPrincipal") {
+            CurrentState = GameState.MenuPrincipal;
+        }
+
+        if(nomeDaCena == "SampleScene") {
+            CurrentState = GameState.Gameplay;
+        }
     }
 
-    // public void checarCena(string ) {
+    public void checarCena() {
+        if(SceneManager.GetActiveScene().name == "Splash") {
+            CurrentState = GameState.Iniciando;
+        }
+        
+        if(SceneManager.GetActiveScene().name == "MenuPrincipal") {
+            CurrentState = GameState.MenuPrincipal;
+        }
 
-    // }
+        if(SceneManager.GetActiveScene().name == "SampleScene") {
+            CurrentState = GameState.Gameplay;
+        }
+    }
+
     private void AlterarEstado(GameState novoEstado)
     {
         CurrentState = novoEstado;
