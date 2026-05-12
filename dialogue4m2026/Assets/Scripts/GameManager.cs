@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     public void MudarCena(string nomeDaCena)
     {
         SceneManager.LoadScene(nomeDaCena);
-        Debug.Log($"Indo para: {nomeDaCena} | Estado: {CurrentState}");
+        Debug.Log($"Indo para a cena: {nomeDaCena}");
 
         if(nomeDaCena == "Splash") {
             CurrentState = GameState.Iniciando;
@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
         if(nomeDaCena == "SampleScene") {
             CurrentState = GameState.Gameplay;
         }
+        
+        Debug.Log($"Mudança de Estado: {CurrentState}");
     }
 
     public void checarCena() {
