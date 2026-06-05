@@ -7,7 +7,7 @@ public partial class Coletavel : MonoBehaviour
 
     void Update()
     {
-        // Faz a moeda girar para ficar bonitona
+        
         transform.Rotate(Vector3.up * velocidadeRotacao * Time.deltaTime);
     }
 
