@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
 
             break;
 
+            case GameState.Gameplay:
+            break;
+
             default: break;
         }
     }
@@ -79,6 +82,8 @@ public class GameManager : MonoBehaviour
 
         if(SceneManager.GetActiveScene().name == "SampleScene") {
             CurrentState = GameState.Gameplay;
+            SceneManager.LoadScene("GUI", LoadSceneMode.Additive);
+        
         }
     }
 
