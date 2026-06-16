@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     {
     
     }
+    
     private void Update() {
         switch(CurrentState) {
             case GameState.Iniciando:
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
             default: break;
         }
     }
+    
     public void MudarCena(string nomeDaCena)
     {
         SceneManager.LoadScene(nomeDaCena);
@@ -66,6 +68,10 @@ public class GameManager : MonoBehaviour
 
         if(nomeDaCena == "SampleScene") {
             CurrentState = GameState.Gameplay;
+            // =================================================================
+            // ADICIONADO: Garante o carregamento aditivo da GUI ao mudar de cena
+            // =================================================================
+            SceneManager.LoadScene("GUI", LoadSceneMode.Additive);
         }
         
         Debug.Log($"Mudança de Estado: {CurrentState}");
@@ -83,7 +89,6 @@ public class GameManager : MonoBehaviour
         if(SceneManager.GetActiveScene().name == "SampleScene") {
             CurrentState = GameState.Gameplay;
             SceneManager.LoadScene("GUI", LoadSceneMode.Additive);
-        
         }
     }
 
